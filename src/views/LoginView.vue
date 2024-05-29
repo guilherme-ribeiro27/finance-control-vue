@@ -1,6 +1,6 @@
 <script>
 import {RouterLink} from 'vue-router'
-
+import Cookie from 'js-cookie' 
 export default{
     name: 'LoginView',
     data(){
@@ -11,16 +11,22 @@ export default{
     },
     methods:{
         submit(){
-            fetch('http://localhost:8081/login', {
+            const payload = {
+                email: this.email,
+                password: this.password
+            }
+            fetch('http://localhost:8080/api/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: this.email,
-                    password: this.password
-                })
+                body: JSON.stringify(payload)
             }).then(res => res.json())
+            .then(res => {
+                Cookie.set('token', res.access_token);
+                console.log(res)
+            })
         }
     }
 }
