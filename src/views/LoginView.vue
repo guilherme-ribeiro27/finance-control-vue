@@ -2,7 +2,7 @@
     
         <div class='min-h-96 max-w-md w-full mx-auto p-8 shadow-md rounded bg-surface dark:bg-dark-surface'>
             <h2 class="text-2xl font-semibold mb-4 text-title dark:text-dark-title text-center">Login</h2>
-            <form action="">
+            <form @submit.stop.prevent="submit">
                 <!-- Email -->
                 <div class='mt-4'>
                     <label for="email" class='text-sm text-title dark:text-dark-title'>Email</label>
@@ -42,7 +42,18 @@ export default{
         }
     },
     methods:{
-
+        submit(){
+            fetch('http://localhost:8081/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: this.email,
+                    password: this.password
+                })
+            }).then(res => res.json())
+        }
     }
 }
 </script>

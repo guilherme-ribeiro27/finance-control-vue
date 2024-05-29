@@ -14,9 +14,7 @@ const toogleDark = useToggle(isDark)
         >
         <FontAwesomeIcon v-if="isDark" :icon="faSun" size="2x" class="dark:text-dark-title"/>
         <FontAwesomeIcon v-else :icon="faMoon" size="2x" />
-        <font-awesome-icon v-if="isDark" icon="fa-regular fa-moon" />
-        <font-awesome-icon v-else icon="fa-regular fa-moon" />
-            <!-- {{ isDark ? '🌞' : <font-awesome-icon icon="fa-regular fa-moon" />     }} -->
+
         </span>
     </div>
     
