@@ -7,7 +7,7 @@ const toogleDark = useToggle(isDark)
 </script>
 
 <template>
-    <div class='flex justify-end items-center w-full h-16 px-16'>
+    <div class='flex justify-end items-center w-full h-12 px-16'>
         <span
             @click="toogleDark()"
             class="cursor-pointer"
