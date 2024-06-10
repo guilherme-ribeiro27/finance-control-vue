@@ -3,6 +3,7 @@ export default{
     name: 'RegisterView',
     data(){
         return{
+            name: '',
             email: '',
             password: '',
             confirmPassword: ''

@@ -1,6 +1,8 @@
 <script>
-import {RouterLink} from 'vue-router'
-import Cookie from 'js-cookie' 
+import Auth from '../services/auth'
+import { toast } from 'vue3-toastify';
+import { useDark } from '@vueuse/core'
+const isDark = useDark()
 export default{
     name: 'LoginView',
     data(){
@@ -10,30 +12,33 @@ export default{
         }
     },
     methods:{
-        submit(){
+        async submit(){
             const payload = {
                 email: this.email,
                 password: this.password
             }
-            fetch('http://localhost:8080/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            }).then(res => res.json())
-            .then(res => {
-                Cookie.set('token', res.access_token);
-                console.log(res)
-            })
+            const {status} = await Auth.login(payload)
+            if(status === 400 || status === 401){
+                toast.error('Invalid credentials', {position: 'bottom-center', theme: isDark.value ? 'dark' : 'light'})
+            }else if(status === 500){
+                console.log('Server error')
+                toast.error('Server error', {position: 'bottom-center', theme: isDark.value ? 'dark' : 'light'})    
+            }else{
+                this.$router.push({name: 'dashboard'})
+            }
+        },
+        notify(){
+            toast("Wow so easy !", {
+                autoClose: 1000,
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
         }
     }
 }
 </script>
 
 <template>
-    
+        <!-- <button @click="notify">Notify</button> -->
         <div class='min-h-96 max-w-md w-full mx-auto p-8 shadow-md rounded bg-surface dark:bg-dark-surface'>
             <h2 class="text-2xl font-semibold mb-4 text-title dark:text-dark-title text-center">Login</h2>
             <form @submit.stop.prevent="submit">
