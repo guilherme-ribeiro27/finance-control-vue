@@ -16,15 +16,22 @@ export default {
         container: '#e6e6e6',
         'on-background': '#fff5f5',
         'title': '#0f0f0f',
-        'subtitle': '#b8b8b8',
+        'subtitle': '#292e2b',
+        'secondary': '#4e5c5a',
+        'dark-secondary': '#D8FFFB',
         'dark-title': '#ffffff',
         'dark-subtitle': '#b8b8b8',
-        
+
+
         'dark-container': '#0a0a0a',
         'dark-on-background': '#242323',
-        'dark-text': '#ffffff',
+
         primary: '#22b56c',
         'dark-primary': '#22b56c',
+
+
+        'dark-border': '#848484',
+        'dark-hightlight': '#28282A',
       }
     },
   },
