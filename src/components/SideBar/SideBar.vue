@@ -1,12 +1,30 @@
 <script setup>
+import { ref } from 'vue';
 import DarkMode from '../DarkMode.vue';
 import SideBarAvatar from './SideBarAvatar.vue';
 import SideBarNav from './SideBarNav.vue';
+const showSideBar = ref<Boolean>(false)
 </script>
 <template >
     <!-- <div class='relative flex min-h-screen bg-surface dark:bg-dark-surface'> -->
         <!-- Sidebar -->
-        <div class='bg-surface dark:bg-dark-surface text-cyan-50 w-64'>
+        <div class='
+        bg-surface
+        dark:bg-dark-surface 
+         w-64 
+         absolute 
+         inset-y-0 
+         left-0 t
+         ransform 
+         -translate-x-full 
+         transtion 
+         duration-200 
+         ease-in-out
+         md:relative
+        md:translate-x-0
+         '
+         
+        >
            <SideBarAvatar />
            <SideBarNav />
         </div>
